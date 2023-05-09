@@ -1,14 +1,16 @@
 
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useStore } from './assets/hooks/useStore';
-import { Container, Row, Col } from 'react-bootstrap';
+import { useStore } from './hooks/useStore';
+import { Container, Row, Col, Button } from 'react-bootstrap';
 import { AUTO_LANGUAGE } from './constants';
+import { ArrowsIcon } from './components/Icons';
+import { LanguageSelector } from './components/LanguageSelector';
 //1. create a initialState
   
 
 function App (){
-  const { fromLanguage, toLanguage, interchangeLanguages} = useStore()
+  const { fromLanguage, toLanguage, interchangeLanguages, setFromLanguage, setToLanguage} = useStore()
   return (
     //3. use hook useReducer
     <Container fluid>
@@ -16,19 +18,23 @@ function App (){
 
       <Row>
         <Col>
-        <h2>From</h2>
-        {fromLanguage}
+        <LanguageSelector 
+        type='from'
+        value={fromLanguage}
+        onChange={setFromLanguage}/>
         </Col>
 
         <Col>
-        <button disable={fromLanguage === AUTO_LANGUAGE}onClick={interchangeLanguages}>
-          intercambiar
-        </button>
+        <Button variant="link" disabled={fromLanguage === AUTO_LANGUAGE}onClick={interchangeLanguages}>
+          <ArrowsIcon />
+        </Button>
         </Col>
 
         <Col>
-        <h2>To</h2>
-        {toLanguage}
+        <LanguageSelector 
+        type='to'
+        value={toLanguage}
+        onChange={setToLanguage}/>
         </Col>
       </Row>
     

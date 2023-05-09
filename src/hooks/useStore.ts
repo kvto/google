@@ -1,4 +1,4 @@
-import { Action, FromLanguage, Language, State } from "../../types"
+import { Action, FromLanguage, Language, State } from "../types"
 import { useReducer } from 'react';
 
 const initialState: State = {
